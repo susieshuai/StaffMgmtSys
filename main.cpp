@@ -1,6 +1,10 @@
 #include <iostream>
+using namespace std;
+#include "workerManager.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    WorkerManager wm;
+    wm.showMenu();
+
     return 0;
 }

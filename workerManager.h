@@ -14,5 +14,6 @@ using namespace std;
 class WorkerManager{
 public:
     WorkerManager();
+    void showMenu();
     ~WorkerManager();
 };
