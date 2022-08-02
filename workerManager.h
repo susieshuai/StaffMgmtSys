@@ -29,12 +29,20 @@ public:
     int staffNum;
     // staff array
     Worker ** staffArray;
+    // flag of file is empty
+    bool fileIsEmpty;
 
     // add staff
     void addStaff();
 
     // save file
     void save();
+
+    // get staff num
+    int getStaffNum();
+
+    // init staff from file
+    void initStaff();
 
     ~WorkerManager();
 };

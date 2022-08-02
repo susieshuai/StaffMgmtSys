@@ -5,8 +5,45 @@
 #include "workerManager.h"
 
 WorkerManager::WorkerManager() {
-    this->staffNum = 0;
-    this->staffArray = NULL;
+    ifstream ifs;
+    ifs.open(FILENAME, ios::in);
+    // case 1: file not exists
+    if(!ifs.is_open()){
+//        cout << "file not exists" << endl;
+        this->staffNum = 0;
+        this->staffArray = NULL;
+        this->fileIsEmpty = true;
+        ifs.close();
+        return;
+    }
+
+    // case 2： file exists, no data
+    char c;
+    ifs >> c;
+    if(ifs.eof()){
+//        cout << "file is empty" << endl;
+        this->staffNum = 0;
+        this->staffArray = NULL;
+        this->fileIsEmpty = true;
+        ifs.close();
+        return;
+    }
+
+    // case 3: file exists, with data
+    int num = this->getStaffNum();
+//    cout << "Staff number: " << num << endl;
+    this->staffNum = num;
+    // allocate memory
+    this->staffArray = new Worker*[this->staffNum];
+    // import data from file
+    this->initStaff();
+
+    // print
+//    for(int i = 0; i < this->staffNum; i++){
+//        cout << this->staffArray[i]->id << " "
+//        << this->staffArray[i]->name << " "
+//        << this->staffArray[i]->deptId << endl;
+//    }
 }
 
 void WorkerManager::showMenu(){
@@ -95,6 +132,7 @@ void WorkerManager::addStaff() {
 
         // write into file
         this->save();
+        this->fileIsEmpty = false;
     }
     else{
         cout << "wrong number" << endl;
@@ -112,6 +150,50 @@ void WorkerManager::save() {
     }
 
     ofs.close();
+}
+
+int WorkerManager::getStaffNum() {
+    ifstream ifs;
+    ifs.open(FILENAME, ios::in);
+
+    int id;
+    string name;
+    int deptId;
+
+    int num = 0;
+    while(ifs >> id && ifs >> name && ifs >> deptId){
+        num++;
+    }
+
+    return num;
+}
+
+void WorkerManager::initStaff() {
+    ifstream ifs;
+    ifs.open(FILENAME, ios::in);
+
+    int id;
+    string name;
+    int deptId;
+
+    // read a line
+    int idx = 0;
+    while(ifs >> id && ifs >> name && ifs >> deptId){
+        Worker * worker = NULL;
+        if(deptId == 1){
+            worker = new Employee(id, name, deptId);
+        }
+        else if(deptId == 2){
+            worker = new Manager(id, name, deptId);
+        }
+        else{
+            worker = new Boss(id, name, deptId);
+        }
+        this->staffArray[idx] = worker;
+        idx++;
+    }
+
+    ifs.close();
 }
 
 WorkerManager::~WorkerManager() {
