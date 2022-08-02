@@ -23,6 +23,11 @@ void WorkerManager::showMenu(){
     cout << endl;
 }
 
+void WorkerManager::exitSystem() {
+    cout << "See you next time" << endl;
+    exit(0);
+}
+
 WorkerManager::~WorkerManager() {
 
 }
