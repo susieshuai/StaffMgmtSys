@@ -10,11 +10,31 @@
 #pragma once
 #include <iostream>
 using namespace std;
+#include "worker.h"
+#include "employee.h"
+#include "manager.h"
+#include "boss.h"
+
+#include <fstream>
+#define FILENAME "staffFile.txt"
 
 class WorkerManager{
 public:
     WorkerManager();
     void showMenu();
     void exitSystem();
+
+    // fields
+    // staff num
+    int staffNum;
+    // staff array
+    Worker ** staffArray;
+
+    // add staff
+    void addStaff();
+
+    // save file
+    void save();
+
     ~WorkerManager();
 };
