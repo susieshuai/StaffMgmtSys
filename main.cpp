@@ -50,6 +50,7 @@ int main() {
                 wm.findStaff();
                 break;
             case 6: // sort
+                wm.sortStaff();
                 break;
             case 7: // reset
                 break;

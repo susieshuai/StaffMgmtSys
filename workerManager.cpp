@@ -350,6 +350,47 @@ void WorkerManager::findStaff(){
     }
 }
 
+void WorkerManager::sortStaff(){
+    if(this->fileIsEmpty){
+        cout << "File not exists or empty" << endl;
+        return;
+    }
+
+    cout << "Sort in which order:" << endl;
+    cout << "1.asc by id" << endl;
+    cout << "2.desc by id" << endl;
+
+    int choice = 0;
+    cin >> choice;
+
+    // selection sort
+    for(int i = 0; i < this->staffNum; i++){
+        int minOrMax = i;
+        for(int j = i + 1; j < this->staffNum; j++) {
+            if (choice == 1) {
+                if (this->staffArray[minOrMax]->id > this->staffArray[j]->id) {
+                    minOrMax = j;
+                }
+            } else {
+                if (this->staffArray[minOrMax]->id < this->staffArray[j]->id) {
+                    minOrMax = j;
+                }
+            }
+        }
+        // find min or max
+        // swap
+        if(i != minOrMax){
+            Worker * temp = this->staffArray[i];
+            this->staffArray[i] = this->staffArray[minOrMax];
+            this->staffArray[minOrMax] = temp;
+        }
+    }
+
+    cout << "Successfully sort" << endl;
+    this->save();
+    this->showStaff();
+}
+
 WorkerManager::~WorkerManager() {
     if(this->staffArray != NULL){
         delete[] this->staffArray;

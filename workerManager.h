@@ -58,5 +58,8 @@ public:
     // find staff by id
     void findStaff();
 
+    // sort staff asc/desc
+    void sortStaff();
+
     ~WorkerManager();
 };
