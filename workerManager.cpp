@@ -263,7 +263,7 @@ void WorkerManager::updateStaff(){
     else{
 
         // error happen when free memory
-        //delete this->staffArray[idx];
+        delete this->staffArray[idx];
 
         int newId = 0;
         string newName = "";
@@ -412,7 +412,7 @@ void WorkerManager::cleanFile(){
         // array
         if(this->staffArray != NULL){
             for(int i = 0; i < this->staffNum; i++){
-                //delete this->staffArray[i];
+                delete this->staffArray[i];
                 this->staffArray[i] = NULL;
             }
             delete[] this->staffArray;
@@ -429,7 +429,7 @@ WorkerManager::~WorkerManager() {
     if(this->staffArray != NULL){
         for(int i = 0; i < this->staffNum; i++){
             if(this->staffArray[i] != NULL){
-                //delete this->staffArray[i];
+                delete this->staffArray[i];
             }
         }
         delete[] this->staffArray;

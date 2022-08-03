@@ -25,4 +25,6 @@ public:
     int id;
     string name;
     int deptId;
+
+    virtual ~Worker() = default;
 };
