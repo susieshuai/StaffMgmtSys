@@ -47,5 +47,10 @@ public:
     // show staff
     void showStaff();
 
+    // delete staff by id
+    int isExist(int id);
+
+    void delStaff();
+
     ~WorkerManager();
 };

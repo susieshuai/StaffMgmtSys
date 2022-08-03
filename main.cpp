@@ -41,6 +41,7 @@ int main() {
                 wm.showStaff();
                 break;
             case 3: // delete
+                wm.delStaff();
                 break;
             case 4: // update
                 break;

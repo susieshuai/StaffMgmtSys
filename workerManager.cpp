@@ -207,6 +207,44 @@ void WorkerManager::showStaff() {
     }
 }
 
+int WorkerManager::isExist(int id){
+    int idx = -1;
+    for(int i = 0; i < this->staffNum; i++){
+        if(this->staffArray[i]->id == id){
+            idx = i;
+            break;
+        }
+    }
+    return idx;
+}
+
+// logic delete
+// size--
+void WorkerManager::delStaff(){
+    if(this->fileIsEmpty){
+        cout << "File not exists or empty" << endl;
+    }
+    else{
+        cout << "Enter staff ID: " <<endl;
+        int id = 0;
+        cin >> id;
+
+        int idx = this->isExist(id);
+        if(idx == -1){
+            cout << "cannot find staff" << endl;
+            return;
+        }
+        else{
+            for(int i = idx; i < this->staffNum - 1; i++){
+                this->staffArray[i] = this->staffArray[i + 1];
+            }
+        }
+        this->staffNum--;
+        this->save();
+        cout << "Successfully delete No." << id << " staff" << endl;
+    }
+}
+
 WorkerManager::~WorkerManager() {
     if(this->staffArray != NULL){
         delete[] this->staffArray;
