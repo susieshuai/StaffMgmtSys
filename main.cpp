@@ -44,6 +44,7 @@ int main() {
                 wm.delStaff();
                 break;
             case 4: // update
+                wm.updateStaff();
                 break;
             case 5: // find
                 break;

@@ -52,5 +52,8 @@ public:
 
     void delStaff();
 
+    // modify existing staff
+    void updateStaff();
+
     ~WorkerManager();
 };

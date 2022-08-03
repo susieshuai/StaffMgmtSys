@@ -245,6 +245,66 @@ void WorkerManager::delStaff(){
     }
 }
 
+void WorkerManager::updateStaff(){
+    if(this->fileIsEmpty){
+        cout << "File not exists or empty" << endl;
+        return;
+    }
+
+    cout << "Enter staff ID: " <<endl;
+    int id = 0;
+    cin >> id;
+
+    int idx = this->isExist(id);
+
+    if(idx == -1){
+        cout << "cannot find staff" << endl;
+    }
+    else{
+
+        // error happen when free memory
+        //delete this->staffArray[idx];
+
+        int newId = 0;
+        string newName = "";
+        int newDeptId = 0;
+
+        cout << "Enter new id: " << endl;
+        cin >> newId;
+
+        cout << "Enter new name: " << endl;
+        cin >> newName;
+
+        cout << "Select new Dept:" << endl;
+        cout << "1.Employee" << endl;
+        cout << "2.Manger" << endl;
+        cout << "3.Boss" << endl;
+        cin >> newDeptId;
+
+        // new worker
+        Worker * worker = NULL;
+        switch (newDeptId) {
+            case 1:
+                worker = new Employee(newId, newName, 1);
+                break;
+            case 2:
+                worker = new Manager(newId, newName, 2);
+                break;
+            case 3:
+                worker = new Boss(newId, newName, 3);
+                break;
+            default:
+                break;
+        }
+
+        // replace idx with new worker
+        this->staffArray[idx] = worker;
+        cout << "Successfully update No." << id << " staff" <<endl;
+        this->save();
+    }
+
+}
+
 WorkerManager::~WorkerManager() {
     if(this->staffArray != NULL){
         delete[] this->staffArray;
