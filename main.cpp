@@ -47,6 +47,7 @@ int main() {
                 wm.updateStaff();
                 break;
             case 5: // find
+                wm.findStaff();
                 break;
             case 6: // sort
                 break;

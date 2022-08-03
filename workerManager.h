@@ -55,5 +55,8 @@ public:
     // modify existing staff
     void updateStaff();
 
+    // find staff by id
+    void findStaff();
+
     ~WorkerManager();
 };

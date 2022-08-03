@@ -302,7 +302,52 @@ void WorkerManager::updateStaff(){
         cout << "Successfully update No." << id << " staff" <<endl;
         this->save();
     }
+}
 
+void WorkerManager::findStaff(){
+    if(this->fileIsEmpty){
+        cout << "File not exists or empty" << endl;
+        return;
+    }
+
+    cout << "Find staff by: " <<endl;
+    cout << "1.ID" <<endl;
+    cout << "2.Name" <<endl;
+    int choice = 0;
+    cin >> choice;
+    if(choice == 1){
+        cout << "Enter staff ID: " <<endl;
+        int id = 0;
+        cin >> id;
+
+        int idx = this->isExist(id);
+
+        if(idx == -1){
+            cout << "cannot find staff" << endl;
+        }
+        else{
+            this->staffArray[idx]->showInfo();
+        }
+    }
+    else if(choice == 2){
+        cout << "Enter staff name: " <<endl;
+        string name = "";
+        cin >> name;
+
+        int cnt = 0;
+        for(int i = 0; i < this->staffNum; i++){
+            if(this->staffArray[i]->name == name){
+                cnt++;
+                this->staffArray[i]->showInfo();
+            }
+        }
+        if(cnt == 0){
+            cout << "cannot find staff" << endl;
+        }
+    }
+    else{
+        cout << "wrong choice" << endl;
+    }
 }
 
 WorkerManager::~WorkerManager() {
