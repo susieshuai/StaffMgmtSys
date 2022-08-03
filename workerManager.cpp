@@ -391,8 +391,47 @@ void WorkerManager::sortStaff(){
     this->showStaff();
 }
 
+void WorkerManager::cleanFile(){
+    if(this->fileIsEmpty){
+        cout << "File not exists or empty" << endl;
+        return;
+    }
+
+    cout << "Are you sure to reset?" << endl;
+    cout << "1.Yes" << endl;
+    cout << "2.No" << endl;
+
+    int choice = 0;
+    cin >> choice;
+
+    if(choice == 1){
+        // file
+        ofstream ofs(FILENAME, ios::trunc); // delete file then recreate
+        ofs.close();
+
+        // array
+        if(this->staffArray != NULL){
+            for(int i = 0; i < this->staffNum; i++){
+                //delete this->staffArray[i];
+                this->staffArray[i] = NULL;
+            }
+            delete[] this->staffArray;
+            this->staffArray = NULL;
+            this->staffNum = 0;
+            this->fileIsEmpty = true;
+        }
+    }
+
+    cout << "Successfully reset" << endl;
+}
+
 WorkerManager::~WorkerManager() {
     if(this->staffArray != NULL){
+        for(int i = 0; i < this->staffNum; i++){
+            if(this->staffArray[i] != NULL){
+                //delete this->staffArray[i];
+            }
+        }
         delete[] this->staffArray;
         this->staffArray = NULL;
     }

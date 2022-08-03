@@ -61,5 +61,8 @@ public:
     // sort staff asc/desc
     void sortStaff();
 
+    // reset
+    void cleanFile();
+
     ~WorkerManager();
 };

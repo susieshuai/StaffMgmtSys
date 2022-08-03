@@ -53,6 +53,7 @@ int main() {
                 wm.sortStaff();
                 break;
             case 7: // reset
+                wm.cleanFile();
                 break;
             default:
                 break;
