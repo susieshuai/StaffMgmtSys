@@ -44,5 +44,8 @@ public:
     // init staff from file
     void initStaff();
 
+    // show staff
+    void showStaff();
+
     ~WorkerManager();
 };

@@ -196,6 +196,17 @@ void WorkerManager::initStaff() {
     ifs.close();
 }
 
+void WorkerManager::showStaff() {
+    if(this->fileIsEmpty){
+        cout << "File not exists or empty" << endl;
+    }
+    else{
+        for(int i = 0; i < this->staffNum; i++){
+            this->staffArray[i]->showInfo();
+        }
+    }
+}
+
 WorkerManager::~WorkerManager() {
     if(this->staffArray != NULL){
         delete[] this->staffArray;

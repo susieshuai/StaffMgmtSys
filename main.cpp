@@ -35,9 +35,10 @@ int main() {
                 wm.exitSystem();
                 break;
             case 1: // add
-            wm.addStaff();
+                wm.addStaff();
                 break;
             case 2: // show
+                wm.showStaff();
                 break;
             case 3: // delete
                 break;
